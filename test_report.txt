@@ -14,9 +14,76 @@ Browserslist: caniuse-lite is outdated. Please run:
 PASS src/objects.test.ts
 PASS src/arrays.test.ts
 PASS src/nested.test.ts
-PASS src/functions.test.ts
 PASS src/components/StartAttempt.test.tsx
-PASS src/components/ChangeType.test.tsx
+FAIL src/bad-components/ChooseTeam.test.tsx
+  ● ChooseTeam Component tests › Clicking first team member works
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Add Alan Turing"
+    Received: "Alan Turing"
+
+      20 |         const currentTeam = screen.queryAllByRole("listitem");
+      21 |         expect(currentTeam).toHaveLength(1);
+    > 22 |         expect(currentTeam[0].textContent).toEqual(first.textContent);
+         |                                            ^
+      23 |     });
+      24 |     test("Clicking the third team member works", () => {
+      25 |         const third = screen.queryAllByRole("button")[2];
+
+      at Object.<anonymous> (src/bad-components/ChooseTeam.test.tsx:22:44)
+
+  ● ChooseTeam Component tests › Clicking the third team member works
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Add Ada Lovelace"
+    Received: "Ada Lovelace"
+
+      27 |         const currentTeam = screen.queryAllByRole("listitem");
+      28 |         expect(currentTeam).toHaveLength(1);
+    > 29 |         expect(currentTeam[0].textContent).toEqual(third.textContent);
+         |                                            ^
+      30 |     });
+      31 |     test("Clicking three team members works", () => {
+      32 |         const [, second, third, , fifth] = screen.queryAllByRole("button");
+
+      at Object.<anonymous> (src/bad-components/ChooseTeam.test.tsx:29:44)
+
+  ● ChooseTeam Component tests › Clicking three team members works
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Add Ada Lovelace"
+    Received: "Ada Lovelace"
+
+      36 |         const currentTeam = screen.queryAllByRole("listitem");
+      37 |         expect(currentTeam).toHaveLength(3);
+    > 38 |         expect(currentTeam[0].textContent).toEqual(third.textContent);
+         |                                            ^
+      39 |         expect(currentTeam[1].textContent).toEqual(second.textContent);
+      40 |         expect(currentTeam[2].textContent).toEqual(fifth.textContent);
+      41 |     });
+
+      at Object.<anonymous> (src/bad-components/ChooseTeam.test.tsx:38:44)
+
+  ● ChooseTeam Component tests › Clearing the team works
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Add Ada Lovelace"
+    Received: "Ada Lovelace"
+
+      48 |         let currentTeam = screen.queryAllByRole("listitem");
+      49 |         expect(currentTeam).toHaveLength(3);
+    > 50 |         expect(currentTeam[0].textContent).toEqual(third.textContent);
+         |                                            ^
+      51 |         expect(currentTeam[1].textContent).toEqual(second.textContent);
+      52 |         expect(currentTeam[2].textContent).toEqual(fifth.textContent);
+      53 |         clear.click();
+
+      at Object.<anonymous> (src/bad-components/ChooseTeam.test.tsx:50:44)
+
 FAIL src/components/TwoDice.test.tsx
   ● TwoDice Component tests › Clicking left button changes first number
 
@@ -103,8 +170,212 @@ FAIL src/components/TwoDice.test.tsx
 
       at Object.<anonymous> (src/components/TwoDice.test.tsx:131:28)
 
+PASS src/functions.test.ts
+FAIL src/bad-components/DoubleHalf.test.tsx
+  ● DoubleHalf Component tests › The DoubleHalf value is initially 10
+
+    TestingLibraryElementError: Unable to find an element with the text: 10. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div>[39m
+          [36m<h3>[39m
+            [0mDouble Half[0m
+          [36m</h3>[39m
+          [36m<span>[39m
+            [0mThe current value is: [0m
+            [0m1[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mDouble[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mHalve[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+       8 |     });
+       9 |     test("The DoubleHalf value is initially 10", () => {
+    > 10 |         expect(screen.getByText("10")).toBeInTheDocument();
+         |                       ^
+      11 |         expect(screen.queryByText("20")).not.toBeInTheDocument();
+      12 |         expect(screen.queryByText("5")).not.toBeInTheDocument();
+      13 |     });
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/bad-components/DoubleHalf.test.tsx:10:23)
+
+  ● DoubleHalf Component tests › You can double the number.
+
+    TestingLibraryElementError: Unable to find an element with the text: 20. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div>[39m
+          [36m<h3>[39m
+            [0mDouble Half[0m
+          [36m</h3>[39m
+          [36m<span>[39m
+            [0mThe current value is: [0m
+            [0m2[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mDouble[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mHalve[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      23 |         const double = screen.getByRole("button", { name: /Double/i });
+      24 |         double.click();
+    > 25 |         expect(screen.getByText("20")).toBeInTheDocument();
+         |                       ^
+      26 |         expect(screen.queryByText("10")).not.toBeInTheDocument();
+      27 |     });
+      28 |     test("You can halve the number.", () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/bad-components/DoubleHalf.test.tsx:25:23)
+
+  ● DoubleHalf Component tests › You can halve the number.
+
+    TestingLibraryElementError: Unable to find an element with the text: 5. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div>[39m
+          [36m<h3>[39m
+            [0mDouble Half[0m
+          [36m</h3>[39m
+          [36m<span>[39m
+            [0mThe current value is: [0m
+            [0m0.5[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mDouble[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mHalve[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      29 |         const halve = screen.getByRole("button", { name: /Halve/i });
+      30 |         halve.click();
+    > 31 |         expect(screen.getByText("5")).toBeInTheDocument();
+         |                       ^
+      32 |         expect(screen.queryByText("10")).not.toBeInTheDocument();
+      33 |     });
+      34 |     test("You can double AND halve the number.", () => {
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/bad-components/DoubleHalf.test.tsx:31:23)
+
+  ● DoubleHalf Component tests › You can double AND halve the number.
+
+    TestingLibraryElementError: Unable to find an element with the text: 20. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div>[39m
+          [36m<h3>[39m
+            [0mDouble Half[0m
+          [36m</h3>[39m
+          [36m<span>[39m
+            [0mThe current value is: [0m
+            [0m2[0m
+          [36m</span>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mDouble[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"btn btn-primary"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mHalve[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      36 |         const halve = screen.getByRole("button", { name: /Halve/i });
+      37 |         double.click();
+    > 38 |         expect(screen.getByText("20")).toBeInTheDocument();
+         |                       ^
+      39 |         expect(screen.queryByText("10")).not.toBeInTheDocument();
+      40 |         double.click();
+      41 |         expect(screen.getByText("40")).toBeInTheDocument();
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByText (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/bad-components/DoubleHalf.test.tsx:38:23)
+
+PASS src/components/ChangeType.test.tsx
 PASS src/components/CycleHoliday.test.tsx
 PASS src/components/Counter.test.tsx
+PASS src/components/RevealAnswer.test.tsx
+PASS src/bad-components/ColoredBox.test.tsx
+FAIL src/bad-components/ShoveBox.test.tsx
+  ● ShoveBox Component tests › Clicking the button moves the box.
+
+    expect(element).toHaveStyle()
+
+    - Expected
+
+    - marginLeft: 14px;
+
+      17 |         const shoveBox = screen.getByRole("button");
+      18 |         shoveBox.click();
+    > 19 |         expect(screen.getByTestId("moveable-box")).toHaveStyle({
+         |                                                    ^
+      20 |             marginLeft: "14px"
+      21 |         });
+      22 |         shoveBox.click();
+
+      at Object.<anonymous> (src/bad-components/ShoveBox.test.tsx:19:52)
+
 FAIL src/text.test.tsx
   ● renders the text 'Hello World' somewhere
 
@@ -121,6 +392,164 @@ FAIL src/text.test.tsx
           [36m>[39m
             [0mUD CISC275 with React Hooks and TypeScript[0m
           [36m</header>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0mDouble Half[0m
+            [36m</h3>[39m
+            [36m<span>[39m
+              [0mThe current value is: [0m
+              [0m1[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mDouble[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn-primary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mHalve[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0mChoose Team[0m
+            [36m</h3>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"row"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"col"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mAlan Turing[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mGrace Hopper[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mAda Lovelace[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mCharles Babbage[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mBarbara Liskov[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"margin-bottom: 4px;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [0mAdd [0m
+                    [0mMargaret Hamilton[0m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"col"[39m
+              [36m>[39m
+                [36m<strong>[39m
+                  [0mTeam:[0m
+                [36m</strong>[39m
+                [36m<ul />[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"btn btn-primary"[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [0mClear Team[0m
+                [36m</button>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0mColored Box[0m
+            [36m</h3>[39m
+            [36m<span>[39m
+              [0mThe current color is: [0m
+              [0mred[0m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mNext Color[0m
+              [36m</button>[39m
+              [36m<div[39m
+                [33mdata-testid[39m=[32m"colored-box"[39m
+                [33mstyle[39m=[32m"width: 50px; height: 50px; background-color: red; display: inline-block; vertical-align: bottom; margin-left: 5px;"[39m
+              [36m/>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<hr />[39m
+          [36m<div>[39m
+            [36m<h3>[39m
+              [0mShove Box[0m
+            [36m</h3>[39m
+            [36m<div[39m
+              [33mstyle[39m=[32m"margin: 10px 0px;"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mShove the Box[0m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mdata-testid[39m=[32m"moveable-box"[39m
+              [33mstyle[39m=[32m"width: 50px; height: 50px; background-color: lightblue; border: 1px solid blue; margin-left: 10px;"[39m
+            [36m/>[39m
+          [36m</div>[39m
           [36m<hr />[39m
           [36m<span>[39m
             [36m<button[39m
@@ -178,12 +607,12 @@ FAIL src/text.test.tsx
             [36m<span[39m
               [33mdata-testid[39m=[32m"left-die"[39m
             [36m>[39m
-              [0m6[0m
+              [0m5[0m
             [36m</span>[39m
             [36m<span[39m
               [33mdata-testid[39m=[32m"right-die"[39m
             [36m>[39m
-              [0m4[0m
+              [0m3[0m
             [36m</span>[39m
             [36m<button[39m
               [33mclass[39m=[32m"btn btn-primary"[39m
@@ -251,32 +680,36 @@ FAIL src/text.test.tsx
       at getAllByText (node_modules/@testing-library/dom/dist/query-helpers.js:130:15)
       at Object.<anonymous> (src/text.test.tsx:7:26)
 
-PASS src/components/RevealAnswer.test.tsx
 PASS src/App.test.tsx
--------------------|---------|----------|---------|---------|-------------------
-File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------------|---------|----------|---------|---------|-------------------
-All files          |   98.75 |    95.89 |     100 |   98.62 |                   
- src               |    98.4 |    96.36 |     100 |   98.18 |                   
-  App.tsx          |     100 |      100 |     100 |     100 |                   
-  arrays.ts        |     100 |      100 |     100 |     100 |                   
-  functions.ts     |     100 |      100 |     100 |     100 |                   
-  nested.ts        |      98 |    94.73 |     100 |    97.5 | 229               
-  objects.ts       |   95.45 |    83.33 |     100 |   95.45 | 50                
- src/components    |     100 |    94.44 |     100 |     100 |                   
-  ChangeType.tsx   |     100 |      100 |     100 |     100 |                   
-  Counter.tsx      |     100 |      100 |     100 |     100 |                   
-  CycleHoliday.tsx |     100 |      100 |     100 |     100 |                   
-  RevealAnswer.tsx |     100 |      100 |     100 |     100 |                   
-  StartAttempt.tsx |     100 |       75 |     100 |     100 | 8                 
-  TwoDice.tsx      |     100 |      100 |     100 |     100 |                   
- src/interfaces    |       0 |        0 |       0 |       0 |                   
-  answer.ts        |       0 |        0 |       0 |       0 |                   
-  question.ts      |       0 |        0 |       0 |       0 |                   
--------------------|---------|----------|---------|---------|-------------------
+--------------------|---------|----------|---------|---------|-------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------|---------|----------|---------|---------|-------------------
+All files           |   98.42 |    94.66 |   99.07 |   98.24 |                   
+ src                |    98.4 |    96.36 |     100 |   98.18 |                   
+  App.tsx           |     100 |      100 |     100 |     100 |                   
+  arrays.ts         |     100 |      100 |     100 |     100 |                   
+  functions.ts      |     100 |      100 |     100 |     100 |                   
+  nested.ts         |      98 |    94.73 |     100 |    97.5 | 229               
+  objects.ts        |   95.45 |    83.33 |     100 |   95.45 | 50                
+ src/bad-components |   96.66 |       50 |      95 |   96.15 |                   
+  ChooseTeam.tsx    |   88.88 |       50 |   83.33 |   88.88 | 23                
+  ColoredBox.tsx    |     100 |      100 |     100 |     100 |                   
+  DoubleHalf.tsx    |     100 |      100 |     100 |     100 |                   
+  ShoveBox.tsx      |     100 |      100 |     100 |     100 |                   
+ src/components     |     100 |    94.44 |     100 |     100 |                   
+  ChangeType.tsx    |     100 |      100 |     100 |     100 |                   
+  Counter.tsx       |     100 |      100 |     100 |     100 |                   
+  CycleHoliday.tsx  |     100 |      100 |     100 |     100 |                   
+  RevealAnswer.tsx  |     100 |      100 |     100 |     100 |                   
+  StartAttempt.tsx  |     100 |       75 |     100 |     100 | 8                 
+  TwoDice.tsx       |     100 |      100 |     100 |     100 |                   
+ src/interfaces     |       0 |        0 |       0 |       0 |                   
+  answer.ts         |       0 |        0 |       0 |       0 |                   
+  question.ts       |       0 |        0 |       0 |       0 |                   
+--------------------|---------|----------|---------|---------|-------------------
 
-Test Suites: 2 failed, 10 passed, 12 total
-Tests:       6 failed, 88 passed, 94 total
+Test Suites: 5 failed, 11 passed, 16 total
+Tests:       15 failed, 96 passed, 111 total
 Snapshots:   0 total
-Time:        5.297 s
+Time:        6.552 s
 Ran all test suites.
